@@ -1,0 +1,116 @@
+
+@import url('base.css');
+
+/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
+@font-face {
+    font-family: 'MuseoSans500';
+    src: url('MuseoSans_500-webfont.eot');
+    src: url('MuseoSans_500-webfont.eot?iefix') format('eot'),
+         url('MuseoSans_500-webfont.woff') format('woff'),
+         url('MuseoSans_500-webfont.ttf') format('truetype'),
+         url('MuseoSans_500-webfont.svg#webfontkQkWxTED') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+	font-family: Verdana;
+	color: #333333;
+	background : url('../img/bg_tile.gif');
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: #268BD2;
+}
+
+a:hover {
+   color: #073642;
+}
+
+
+header {
+	padding: 10px 0;
+	background-color: #394047;
+    border-bottom: 3px solid #292929;
+    box-shadow: 0 -7px 5px rgba(0, 0, 0, 0.05) inset;
+}
+
+header h1 {
+	width: 760px;
+	margin: 0 auto;
+   font-family: 'MuseoSans500';
+	font-weight: normal;
+	font-size: 48px;
+	}
+
+header h1 a,
+header h1 a:visited {
+	color: white;
+}
+
+#content {
+	width: 760px;
+	margin: 0 auto;
+	padding: 20px 0;
+	overflow: hidden;
+}
+
+#about {
+	height: 160px;
+	overflow: hidden;
+	margin: 0 0 10px 0;
+	border-bottom: 1px solid #cccccc;
+	text-align: justify;
+}
+
+#about img {
+	float: left;
+	margin-right: 20px;
+	border: 1px solid #cccccc;
+}
+
+#notes {
+	float:left;
+	width: 280px;
+}
+
+#projects {
+	float:left;
+	clear:left;
+	width: 459px;
+	margin-right: 20px;
+}
+
+footer {
+	padding: 25px 0;
+	background-color: #394047;
+    border-top: 2px solid #292929;
+    box-shadow: 0 -7px 5px rgba(0, 0, 0, 0.05) inset;
+}
+
+footer p {
+    width: 760px;
+    margin: 0 auto;
+    color: white;
+    line-height: 30px;
+}
+
+footer a {
+	float: left;
+	margin-right: 20px;
+}
+
+#content h1 {
+   font-family: 'MuseoSans500';
+   font-weight:normal;
+   color:#006699;
+   font-size:2em;
+   margin-bottom:10px;
+}
+
+#content h2 {
+   font-family: 'MuseoSans500';
+   font-weight:normal;
+}
