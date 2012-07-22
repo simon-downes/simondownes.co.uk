@@ -29,6 +29,9 @@ a:hover {
    color: #073642;
 }
 
+blockquote {
+	margin-bottom: 1em;
+}
 
 header {
 	padding: 10px 0;
