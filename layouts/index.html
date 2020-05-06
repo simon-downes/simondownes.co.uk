@@ -1,0 +1,29 @@
+{{ define "hero" }}
+<section class="hero is-primary is-medium">
+  <div class="hero-head">
+
+  </div>
+  <div class="hero-body">
+      <div class="container">
+          <h1 class="title">
+            Hi,<br>I'm Simon, a DevOps Engineer<br>from Sussex, UK
+          </h1>
+          <h2 class="subtitle">{{ .Site.Params.homeText | markdownify }}</h2>
+      </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "main" }}
+    <section class="content">
+
+      <h1 class="title">Posts</h1>
+      <ul>
+        {{ range .Site.RegularPages.ByPublishDate.Reverse }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+
+  </section>
+
+{{ end }}

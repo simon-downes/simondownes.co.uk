@@ -1,0 +1,35 @@
+
+
+html, body {
+    background-color: #fafafa;
+}
+
+.container {
+    max-width: 960px;
+}
+
+section.hero.is-primary {
+    background: #3A8BC4;
+}
+
+main {
+
+    padding: 3rem 1.5rem;
+    background: #ffffff;
+
+    p {
+        margin-bottom: 1em;
+    }
+
+}
+
+footer {
+
+    background-color: #fafafa;
+    padding: 3rem 1.5rem;
+
+    a.license {
+        margin-left: 1rem;
+    }
+
+}

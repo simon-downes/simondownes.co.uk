@@ -1,0 +1,18 @@
+baseURL = "https://simondownes.uk/"
+languageCode = "en-gb"
+title = "Simon Downes"
+
+[permalinks]
+  blog = "/:filename/"
+
+[taxonomies]
+  tag = "tags"
+
+[params]
+  homeText = ""
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

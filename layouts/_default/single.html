@@ -1,0 +1,25 @@
+
+{{ define "main" }}
+<article class="content">
+
+  <h1 class="title">{{ .Title }}</h1>
+
+  <div class="meta is-size-7">
+    {{ $dateTime := .PublishDate.Format "2006-01-02" }}
+    {{ $dateFormat := .Site.Params.dateFormat | default "Jan 2, 2006" }}
+    <time datetime="{{ $dateTime }}">{{ .PublishDate.Format $dateFormat }}</time>
+    {{ with .Params.tags }}
+      <span class="icon">
+        <i class="fas fa-tags"></i>
+      </span>
+      {{ range . }}
+        {{ $href := print (absURL "tags/") (urlize .) }}
+        <a class="tag is-link is-light" href="{{ $href }}">{{ . }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+
+  {{ .Content }}
+
+</article>
+{{ end }}

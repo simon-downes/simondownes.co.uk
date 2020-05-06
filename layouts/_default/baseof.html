@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" class="has-navbar-fixed-top">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {{ $title := print .Title " | " .Site.Title }}
+  {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
+  <title>{{ $title }}</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+  {{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
+
+</head>
+<body class="has-navbar-fixed-top">
+
+  <header>
+    <nav class="navbar is-primary is-fixed-top">
+      <div class="container">
+        <div class="navbar-brand">
+            <!--a class="navbar-item" href="/">
+              <figure class="image is-64x64 is-square is-hidden-touch">
+                <img src="/img/profile.png" alt="Simon Downes" class="is-rounded">
+              </figure>
+              <div class="media is-hidden-desktop">
+                <div class="media-left">
+                  <figure class="image is-48x48 is-square">
+                    <img src="/img/profile.png" alt="Simon Downes" class="is-rounded">
+                  </figure>
+                </div>
+              </div>
+              <strong class="title is-5 is-hidden-desktop">Simon Downes</strong>
+            </a-->
+            <a class="navbar-item" href="/">
+              <div class="media ">
+                <div class="media-left">
+                  <figure class="image is-64x64 is-square is-hidden-touch">
+                    <img src="/img/profile.png" alt="Simon Downes" class="is-rounded">
+                  </figure>
+                  <figure class="image is-48x48 is-square is-hidden-desktop">
+                    <img src="/img/profile.png" alt="Simon Downes" class="is-rounded">
+                  </figure>
+                </div>
+              </div>
+              <strong class="title is-5">Simon Downes</strong>
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <!--div class="navbar-start">
+                <a class="navbar-item is-rounded" href="/posts">Posts</a>
+                <a class="navbar-item" href="/about">About</a>
+                <a class="navbar-item" href="/contact">Contact</a>
+                <a class="navbar-item" href="/freelance">Freelance</a>
+            </div-->
+            <div class="navbar-end">
+              <a class="navbar-item" href="https://github.com/simon-downes/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                <span class="is-hidden-desktop">GitHub</span>
+              </a>
+              <a class="navbar-item" href="https://www.linkedin.com/in/simon-downes/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+                <span class="is-hidden-desktop">LinkedIn</span>
+              </a>
+            </div>
+          </div->
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  {{ block "hero" . }}{{ end }}
+
+  <main>
+    <div class="container">
+    {{ block "main" . }}{{ end }}
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="level">
+        <div class="level-left">
+            <div class="level-item copy">
+              © 2020 Simon Downes
+              <a class="license" rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png">
+              </a>
+            </div>
+        </div>
+        <div class="level-right">
+            <div class="content">
+            </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+
+</body>
+</html>
