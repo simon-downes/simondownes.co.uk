@@ -1,9 +1,9 @@
-baseURL = "https://simondownes.uk/"
+baseURL = "https://simondownes.co.uk/"
 languageCode = "en-gb"
 title = "Simon Downes"
 
-[permalinks]
-  blog = "/:filename/"
+#[permalinks]
+#  blog = "/:filename/"
 
 [taxonomies]
   tag = "tags"
