@@ -8,3 +8,17 @@ $body-size: 18px;
 @import "structure.scss";
 @import "navbar.scss";
 @import "post.scss";
+
+.post-list{
+    li {
+        time {
+            margin-right: 1em;
+        }
+    }
+}
+
+.is-meta {
+    font-size: .89em !important;
+    vertical-align: text-bottom;
+    color: $grey;
+}

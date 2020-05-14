@@ -1,8 +1,8 @@
 ---
 title: "ACM Certificates for Gandi Domains Using Terraform"
-date: 2020-05-09
-draft: true
-tags: ["aws", "terraform"]
+date: 2020-05-14
+draft: false
+tags: ["AWS", "terraform"]
 ---
 
 In this article we're going to cover how to use Terraform to generate an ACM
@@ -248,3 +248,6 @@ certificate_arn = arn:aws:acm:us-east-1:<snip>:certificate/<snip>
 
 You can also run `terraform destroy` to remove the certificate and DNS record
 and then re-run `terraform apply` to see it run end-to-end.
+
+I've adapted the above into a Terrform module that you can find here:
+https://github.com/simon-downes/platform/tree/master/terraform/modules/acm_gandi

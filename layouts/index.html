@@ -18,9 +18,11 @@
     <section class="content">
 
       <h1 class="title">Posts</h1>
-      <ul>
-        {{ range .Site.RegularPages.ByPublishDate.Reverse }}
-        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+
+      <ul class="post-list">
+
+        {{ range where .Site.RegularPages.ByPublishDate.Reverse "Type" "posts" }}
+        {{ partial "post-list-item.html" . }}
         {{ end }}
       </ul>
 

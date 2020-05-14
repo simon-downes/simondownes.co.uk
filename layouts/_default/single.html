@@ -4,12 +4,12 @@
 
   <h1 class="title">{{ .Title }}</h1>
 
-  <div class="meta is-size-7">
+  <div class="meta">
     {{ $dateTime := .PublishDate.Format "2006-01-02" }}
-    {{ $dateFormat := .Site.Params.dateFormat | default "Jan 2, 2006" }}
-    <time datetime="{{ $dateTime }}">{{ .PublishDate.Format $dateFormat }}</time>
+    {{ $dateFormat := .Site.Params.dateFormat | default "2 Jan 2006" }}
+    <time class="is-meta" datetime="{{ $dateTime }}">{{ .PublishDate.Format $dateFormat }}</time>
     {{ with .Params.tags }}
-      <span class="icon">
+      <span class="icon" title="tags">
         <i class="fas fa-tags"></i>
       </span>
       {{ range . }}
