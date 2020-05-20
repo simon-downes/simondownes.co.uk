@@ -2,8 +2,8 @@ baseURL = "https://simondownes.co.uk/"
 languageCode = "en-gb"
 title = "Simon Downes"
 
-#[permalinks]
-#  blog = "/:filename/"
+[permalinks]
+  static = "/:filename/"
 
 [taxonomies]
   tag = "tags"

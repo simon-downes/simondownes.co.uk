@@ -17,8 +17,15 @@ main {
     padding: 3rem 1.5rem;
     background: #ffffff;
 
+    article {
+        max-width: 40em;
+    }
+
     p {
         margin-bottom: 1em;
+        &.help {
+            margin-bottom: 0;
+        }
     }
 
 }

@@ -1,0 +1,27 @@
+
+#contact-form {
+
+    margin: 1.5rem 0;
+
+    .columns {
+        margin-top: 0;
+        margin-bottom: 0;
+        .column {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    .field {
+        margin-bottom: 1.5rem;
+        @media only screen and (max-width: 768px) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .help,
+    .message {
+        display: none;
+    }
+
+}

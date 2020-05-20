@@ -1,0 +1,66 @@
+---
+title: "Contact"
+date: 2020-05-20
+type: static
+tags: []
+---
+
+<section class="blurb">
+  <p>Whether you have project in mind, need some advice, or simply want to say hello, I'd love to hear from you.</p>
+  <p>Email me at <a href="mailto:simon@sierradelta.co.uk">simon@sierradelta.co.uk</a> or fill out the form below...</p>
+</section>
+
+<form id="contact-form" action="https://r64702kwkh.execute-api.eu-west-2.amazonaws.com/dev/contact" method="POST">
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <label class="label">Your name</label>
+        <div class="control has-icons-left">
+          <input id="contact-name" class="input" type="text" placeholder="" requred>
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </div>
+        <p class="help is-danger"></p>
+      </div>
+    </div>
+    <div class="column">
+      <div class="field">
+        <label class="label">Your email</label>
+        <div class="control has-icons-left">
+          <input id="contact-email" class="input" type="email" placeholder="" requred>
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
+        <p class="help is-danger"></p>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">How can I help?</label>
+    <div class="control">
+      <textarea id="contact-message" class="textarea" placeholder="" requred></textarea>
+    </div>
+    <p class="help is-danger"></p>
+  </div>
+  <div class="buttons">
+    <button type="submit" class="button is-success">Send Message</button>
+  </div>
+  <div class="message is-danger">
+    <div class="message-body">
+      <span class="icon">
+          <i class="far fa-frown"></i>
+      </span>
+      Sorry, it seems that an error occurred. Please try again later...
+    </div>
+  </div>
+  <div class="message is-success">
+    <div class="message-body">
+      <span class="icon">
+          <i class="far fa-smile"></i>
+      </span>
+      Thanks for getting in touch, I'll get back to you shortly.
+    </div>
+  </div>
+</form>
