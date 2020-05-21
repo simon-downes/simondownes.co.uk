@@ -11,15 +11,15 @@
 
 $('#contact-form').on('submit', function( e ) {
 
-	// reset form state
-	$('#contact-form input').removeClass('is-danger');
-	$('#contact-form textarea').removeClass('is-danger');
-	$('#contact-form .help').hide();
-	$('#contact-form .message').hide();
+    // reset form state
+    $('#contact-form input').removeClass('is-danger');
+    $('#contact-form textarea').removeClass('is-danger');
+    $('#contact-form .help').hide();
+    $('#contact-form .message').hide();
 
-	// disable submit button and show wait status indicators
-	$('#contact-form button[type=submit]').prop('disabled', true).addClass('is-loading');
-	$('body').css('cursor', 'wait');
+    // disable submit button and show wait status indicators
+    $('#contact-form button[type=submit]').prop('disabled', true).addClass('is-loading');
+    $('body').css('cursor', 'wait');
 
     fetch(
         $(e.target).attr('action'),
@@ -32,6 +32,7 @@ $('#contact-form').on('submit', function( e ) {
                 name: $('#contact-name').val(),
                 email: $('#contact-email').val(),
                 message: $('#contact-message').val(),
+                captcha: $('#g-recaptcha-response').val(),
             }),
         }
     )
@@ -39,6 +40,7 @@ $('#contact-form').on('submit', function( e ) {
 
         // if we get a successful response we'll just assume the message was sent
         if( response.ok ) {
+            $('#contact-form .buttons').hide();
             $('#contact-form .message.is-success').show();
         }
         // validation error
@@ -48,6 +50,10 @@ $('#contact-form').on('submit', function( e ) {
             response.json().then(data => {
                 console.log(data);
                 Object.entries(data.errors).forEach(([field, message]) => {
+                    if( field == 'captcha' ) {
+                        $('#captcha-error').text(message).show();
+                        return;
+                    }
                     $('#contact-' + field).addClass('is-danger');
                     $('#contact-' + field).parent().siblings('.help').text(message).show();
                 });
