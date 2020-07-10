@@ -20,4 +20,18 @@ article.post {
         }
     }
 
+    .blurb + .book {
+        margin-top: 2.5rem;
+    }
+
+    .media.book {
+
+        background: #fafaff;
+
+        img {
+            height: 128px;
+        }
+
+    }
+
 }
