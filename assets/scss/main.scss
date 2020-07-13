@@ -13,6 +13,8 @@ $body-size: 18px;
 .post-list{
     li {
         time {
+            display: inline-block;
+            min-width: 5.5rem;
             margin-right: 1em;
         }
     }

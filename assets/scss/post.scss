@@ -24,6 +24,20 @@ article.post {
         margin-top: 2.5rem;
     }
 
+    h2 {
+        @extend .title;
+        @extend .is-4;
+    }
+
+    h3 {
+        @extend .title;
+        @extend .is-5;
+    }
+
+    figure.image {
+        margin: 1em 0;
+    }
+
     .media.book {
 
         background: #fafaff;
