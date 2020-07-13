@@ -2,6 +2,7 @@ version: 0.2
 
 env:
   variables:
+    s3_bucket: "simondownes.co.uk"
     hugo_version: "0.74.1"
 
 phases:
@@ -11,21 +12,15 @@ phases:
       python: 3.8
     commands:
       - apt-get update
-      - echo Installing hugo
       - curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v${hugo_version}/hugo_extended_${hugo_version}_Linux-64bit.deb
       - dpkg -i hugo.deb
 
   pre_build:
     commands:
-      - echo In pre_build phase..
       - echo Current directory is $CODEBUILD_SRC_DIR
       - ls -la
 
   build:
     commands:
       - hugo -v
-
-artifacts:
-  files:
-    - '**/*'
-  base-directory: public
+      - cd public && aws s3 sync . s3://${s3_bucket} --delete
