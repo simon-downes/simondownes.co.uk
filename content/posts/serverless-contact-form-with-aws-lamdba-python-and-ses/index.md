@@ -1,8 +1,16 @@
 ---
-title: "Serverless Contact Form With Lamdba, Python and SES"
-date: 2020-07-10
-draft: true
+title: "A Serverless Contact Form With AWS Lamdba, Python and SES"
+date: 2020-07-14
+tags: ["AWS", "lambda", "serverless"]
 ---
+
+The major benefits of static websites are being cheaper, faster and simpler than their more traditional counterparts.
+Service combinations such as CloudFront and S3 can deliver excellent web hosting functionality at a fraction of the cost
+of dedicated compute resources (whether on premise or cloud instances).
+
+The main downside is obviously the lack of compute ability for even the simplest of tasks; the most common of which is
+the classic contact form. Fortunately, services such as AWS Lambda excel at filling this gap, providing compute ability
+on-demand without the need for spinning up servers, and usually at a much lower cost as well.
 
 In this article we're going to implement a simple contact form using the Serverless framework, AWS Lambda and SES.
 We'll also be throwing in some simple validation as well as spam prevention with reCAPTCHA.
@@ -16,7 +24,7 @@ We'll also be using the following Serverless plugins:
 - [Dotenv](https://www.serverless.com/plugins/serverless-dotenv-plugin)
 - [Python Requirements](https://www.serverless.com/blog/serverless-python-packaging)
 
-Our lambda will be written in Python 3 and we'll also be using [virtualenv](https://docs.python-guide.org/dev/virtualenvs/#lower-level-virtualenv)
+Our Lambda will be written in Python 3 and we'll also be using [virtualenv](https://docs.python-guide.org/dev/virtualenvs/#lower-level-virtualenv)
 and the [AWS SDK for Python](https://github.com/boto/boto3).
 
 As we're using [reCAPTCHA](https://www.google.com/recaptcha/admin), you should have an appropriate site set-up already
@@ -39,15 +47,17 @@ Fortunately verifying an email address is a very simple process:
 Once you've entered the email address you'll be using and submitted the form, you'll receive a verification
 email in your inbox, simply click the link in that email, and presto!
 
+I like to use different addresses for sending and receiving as it makes filtering easy when I know email originated
+from the contact form. If you want to take a similar approach just verify the second email address using the steps above;
+but you can use the same address for both without issue.
+
 ### The SES Sandbox
 
 All new SES accounts are placed in a sandbox; which limits the number of messages you can send in a 24 hours period (200)
 and also only allows you to send _to_ verified emails address as well as _from_.
 
 You can [request that your account be removed from the sandbox](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html);
-or alternatively, verify the email address that you'll be sending the contact form data _to_ (if it's different from the
-one you verified earlier).
-
+but for the purposes of the article being in the sandbox isn't an issue.
 
 ## Going Serverless
 
@@ -60,7 +70,14 @@ $ sls plugin install --name serverless-dotenv-plugin
 $ sls plugin install --name serverless-python-requirements
 ```
 
-Next we'll need to update the `serverless.yml` file:
+`sls create` generates two files two files:
+- `serverless.yml` - the configuration file for the service.
+- `handler.py` -  a Python module containing the Lambda function
+
+A service can contain as many handlers as you’d like, each one mapping to a new Lambda function;
+in this project, we’ll just be using a single handler.
+
+We'll need to replace the default configuration with our own, so update the `serverless.yml` file to the following:
 
 ```yaml
 service: contact-form
@@ -120,12 +137,9 @@ EMAIL_RECIPIENT=YOUR_VERIFIED_RECIPIENT_EMAIL
 `EMAIL_SOURCE` is the verified email address that will appear in the `From` header.
 `EMAIL_RECIPIENT` is the verified email address that the form submission will be emailed to.
 
-I like to use different addresses for clarity - i.e. I can see that the email originated from the contact form,
-but you can use the same address for both without issue.
-
 ## Writing the Lambda
 
-Before we write the body of our lambda, lets create a virtual environment and install our dependencies:
+Before we write the body of our Lambda, lets create a virtual environment and install our dependencies:
 
 ```bash
 $ virtualenv -p /usr/bin/python3 venv
@@ -133,7 +147,7 @@ $ source venv/bin/activate
 $ pip install boto3 requests
 ```
 
-Now we're ready to write our lambda:
+Now we're ready to write our Lambda, replace the content of `handler.py` with the following:
 
 ```python
 
@@ -208,7 +222,6 @@ def sendEmail( event, context ):
 
     return response(SUCCESS)
 
-
 def validate( data ):
 
     errors = {}
@@ -248,7 +261,6 @@ def validateCaptcha( captchaResponse ):
 
     return data['success']
 
-
 def response( statusCode, errors = None ):
 
     body = {
@@ -268,7 +280,7 @@ def response( statusCode, errors = None ):
     }
 ```
 
-To summarise the actions performed in the code:
+I won't dive into the detail of the code as it should be fairly self-explanatory; but to summarise what our handler is doing:
 - Extract the data we need from the body of the incoming request
 - Validate the data
   - All values are required (including removing of leading and trailing whitespace)
@@ -319,9 +331,39 @@ Construct a JSON POST request such as the following and send it:
 
 You should receive an "Invalid captcha response error" as we didn't supply valid reCAPTCHA data.
 
+### Under the Hood
+
+Now we have a working Serverless service, let's take a moment to look at what was created and the overall architecture of
+the application.
+
+AWS Lambdas can't be invoked directly via a web request so we need something to accept the incoming request and invoke
+our lambda - enter API Gateway. For the sake of simplicity, we're using the
+[Lambda proxy](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html)
+integration (the default for Serverless Framework), which means that API Gateway will pass the request as-is to the Lambda.
+
+The Serverless Framework automatically handles the creation of the API Gateway along with the integration with Lambda.
+It also handles the creation of the IAM roles and policies that provide access control restrictions for API Gateway and
+our Lambda.
+
+Our overall architecture looks like this:
+
+<figure class="image is-fullwidth">
+    <img src="serverless.png" alt="Architecture" title="Architecture">
+</figure>
+
+- The client web browser sends an HTTP POST request to the API Gateway endpoint.
+- API Gateway then invokes our Lambda method, passing through the details of the request.
+- Our Lambda validates the request and calls SES to send an email based on the data to our target recipient.
+- The response from the Lambda is then proxied back through API Gateway to the client web browser.
+
 ### Troubleshooting
 
+As I mentioned above, output from calls to `print()` in the handler will be directed to CloudWatch logs automatically.
+If you open up CloudWatch logs in the AWS Console, you should see two new log groups. One for the Lambda we've created
+and the other for the API Gateway.
 
+Your first port of call for issues should be the logs for the Lambda, you'll be able to see details of the requests
+received from API Gateway and any runtime errors encountered will also be logged there.
 
 ## The Contact Form
 
@@ -509,6 +551,12 @@ $('#contact-form').on('submit', function( e ) {
 </html>
 ```
 
-## Summary and Next Steps
+## Summary
 
-You should now have a working contact form implementation with some inspiration for future experiments.
+Serverless Framework and AWS are a great combination for adding dynamic functionally to static sites. Indeed, I use
+almost the exact implementation above for the contact form on this site.
+
+There's a few improvements we could make - restricting access via CORS, implementing some monitoring, moving some of
+the validation to API Gateway to reduce Lambda execution costs, etc.
+
+I'll leave those as an exercise for the reader...
