@@ -9,9 +9,10 @@
       {{ .Content }}
 
       <ul>
-        {{ range sort .Pages ".Date" "desc" }}
+       {{ range sort .Pages ".File.TranslationBaseName" }}
         <li>
           <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ partial "tags-list.html" .Params.tags }}
         </li>
         {{ end }}
       </ul>

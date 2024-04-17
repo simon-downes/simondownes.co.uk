@@ -1,2 +1,8 @@
+# hugo server lock file
+.hugo_build.lock
+
+# generated resources
 resources/_gen/*
+
+# the built site
 public/*

@@ -1,0 +1,24 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{ hugo.Generator }}
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="{{ "favicons/favicon.svg" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "favicons/apple-touch-icon.png" | relURL }}">
+<link rel="manifest" href="/manifest.json">
+
+<title>
+  {{- if .IsHome -}}
+    {{ .Site.Title -}}
+  {{ else -}}
+    {{ with .Title }}{{ . }} | {{ end -}}
+    {{ .Site.Title -}}
+  {{ end -}}
+</title>
+
+<meta name="description" content="{{ .Page.Description | default (.Site.Params.Description) }}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
+{{ $style := resources.Get "sass/main.scss" | toCSS | fingerprint -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">

@@ -1,6 +1,19 @@
-baseURL = "https://simondownes.co.uk/"
-languageCode = "en-gb"
-title = "Simon Downes"
+baseURL = 'https://docs.sierradelta.dev/'
+languageCode = 'en-gb'
+timeZone = "Europe/London"
+
+# the basics
+title = 'Simon Downes'
+copyright = "Simon Downes"
+
+# enable getting file metadata from git - e.g. last updated dates
+# enableGitInfo = true
+
+# ascii urls only
+removePathAccents = true
+
+[params]
+description = "Welcome to the jungle!"
 
 [permalinks]
   static = "/:filename/"
@@ -8,11 +21,11 @@ title = "Simon Downes"
 [taxonomies]
   tag = "tags"
 
-[params]
-  homeText = ""
-
 [markup]
   defaultMarkdownHandler = "goldmark"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+    [markup.highlight]
+    style = 'perldoc'

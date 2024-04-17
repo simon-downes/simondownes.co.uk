@@ -1,0 +1,85 @@
+
+// 1. Correct the inheritance and scaling of font size in all browsers
+// 2. Correct the odd `em` font sizing in all browsers
+pre,
+code,
+kbd,
+samp {
+  font-size: 0.875em; // 2
+  font-family: var(#{$css-var-prefix}font-family); // 1
+}
+
+// Prevent overflow of the container in all browsers (opinionated)
+pre {
+  -ms-overflow-style: scrollbar;
+  overflow: auto;
+}
+
+// Pico
+// ––––––––––––––––––––
+
+pre,
+code,
+kbd {
+  border-radius: var(#{$css-var-prefix}border-radius);
+  background: var(#{$css-var-prefix}code-background-color);
+  color: var(#{$css-var-prefix}code-color);
+  font-weight: var(#{$css-var-prefix}font-weight);
+  line-height: initial;
+  border: 1px solid #dde;
+}
+
+code,
+kbd {
+  display: inline-block;
+  padding: 0.18rem 0.5rem;
+}
+
+pre {
+  display: block;
+  margin-bottom: var(#{$css-var-prefix}spacing);
+  overflow-x: auto;
+
+  > code {
+    display: block;
+    border: none;
+    padding: var(#{$css-var-prefix}spacing);
+    background: none;
+    font-size: 14px;
+    line-height: var(#{$css-var-prefix}line-height);
+  }
+}
+
+// Code Syntax
+code {
+  // Tags
+  b {
+    color: var(#{$css-var-prefix}code-tag-color);
+    font-weight: var(#{$css-var-prefix}font-weight);
+  }
+
+  // Properties
+  i {
+    color: var(#{$css-var-prefix}code-property-color);
+    font-style: normal;
+  }
+
+  // Values
+  u {
+    color: var(#{$css-var-prefix}code-value-color);
+    text-decoration: none;
+  }
+
+  // Comments
+  em {
+    color: var(#{$css-var-prefix}code-comment-color);
+    font-style: normal;
+  }
+}
+
+// kbd
+kbd {
+  background-color: var(#{$css-var-prefix}code-kbd-background-color);
+  color: var(#{$css-var-prefix}code-kbd-color);
+  vertical-align: baseline;
+}

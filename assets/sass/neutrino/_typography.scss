@@ -1,0 +1,183 @@
+
+address,
+blockquote,
+dl,
+figure,
+form,
+ol,
+p,
+pre,
+table,
+ul {
+  margin-top: 0;
+  margin-bottom: var(#{$css-var-prefix}spacing-vertical);
+  color: var(#{$css-var-prefix}color);
+  font-style: normal;
+  font-weight: var(#{$css-var-prefix}font-weight);
+  font-size: var(#{$css-var-prefix}font-size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(#{$css-var-prefix}spacing-vertical);
+  color: var(#{$css-var-prefix}heading-color);
+  font-weight: var(#{$css-var-prefix}font-weight);
+  font-size: var(#{$css-var-prefix}font-size);
+  font-family: var(#{$css-var-prefix}font-secondary);
+}
+
+// Margin-top for headings after a typography block
+:where(address, blockquote, dl, figure, form, ol, p, pre, table, ul) {
+  ~ :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: var(#{$css-var-prefix}spacing-vertical);
+  }
+}
+
+// Heading group
+hgroup {
+  margin-bottom: var(#{$css-var-prefix}spacing-vertical);
+
+  > * {
+    margin-bottom: 0;
+  }
+
+  > *:last-child {
+    #{$css-var-prefix}color: var(#{$css-var-prefix}muted-color);
+    #{$css-var-prefix}font-weight: unset;
+    font-size: 1rem;
+    font-family: unset;
+  }
+}
+
+// Paragraphs
+p {
+  margin-bottom: var(#{$css-var-prefix}spacing-vertical);
+}
+
+// Lists
+:where(dl, ol, ul) {
+  padding-right: 0;
+  padding-left: var(#{$css-var-prefix}spacing);
+  padding-inline-start: var(#{$css-var-prefix}spacing);
+  padding-inline-end: 0;
+
+  li {
+    margin-bottom: calc(var(#{$css-var-prefix}spacing-vertical) * 0.25);
+  }
+}
+
+// Margin-top for nested lists
+// 1. Remove the margin on nested lists in Chrome, Edge, IE, and Safari
+:where(dl, ol, ul) {
+  :is(dl, ol, ul) {
+    margin: 0; // 1
+    margin-top: calc(var(#{$css-var-prefix}spacing-vertical) * 0.25);
+  }
+}
+
+ul li {
+  list-style: disc;
+}
+
+// Blockquote
+blockquote {
+  display: block;
+  margin: var(#{$css-var-prefix}spacing-vertical) 0;
+  padding: var(#{$css-var-prefix}spacing);
+  border-right: none;
+  border-left: 0.25rem solid var(#{$css-var-prefix}blockquote-border-color);
+  border-inline-start: 0.25rem solid var(#{$css-var-prefix}blockquote-border-color);
+  border-inline-end: none;
+
+  footer {
+    margin-top: calc(var(#{$css-var-prefix}spacing-vertical) * 0.5);
+    color: var(#{$css-var-prefix}blockquote-footer-color);
+  }
+}
+
+a {
+  outline: none;
+  background-color: transparent;
+  #{$css-var-prefix}color: var(#{$css-var-prefix}primary);
+
+  color: var(#{$css-var-prefix}color);
+  text-decoration: var(#{$css-var-prefix}text-decoration);
+
+  transition: background-color var(#{$css-var-prefix}transition), color var(#{$css-var-prefix}transition),
+      text-decoration var(#{$css-var-prefix}transition), box-shadow var(#{$css-var-prefix}transition);
+
+  &:is([aria-current], :hover, :active, :focus) {
+    #{$css-var-prefix}color: var(#{$css-var-prefix}primary-hover);
+    #{$css-var-prefix}text-decoration: underline;
+  }
+
+  &:focus {
+    #{$css-var-prefix}background-color: var(#{$css-var-prefix}primary-focus);
+  }
+
+  // Secondary
+  &.secondary {
+    #{$css-var-prefix}color: var(#{$css-var-prefix}secondary);
+
+    &:is([aria-current], :hover, :active, :focus) {
+      #{$css-var-prefix}color: var(#{$css-var-prefix}secondary-hover);
+    }
+
+    &:focus {
+      #{$css-var-prefix}background-color: var(#{$css-var-prefix}secondary-focus);
+    }
+  }
+
+}
+
+// Small
+small {
+  font-size: var(#{$css-var-prefix}font-size);
+}
+
+// Highlighted text
+mark {
+  padding: 0.125rem 0.25rem;
+  background-color: var(#{$css-var-prefix}mark-background-color);
+  color: var(#{$css-var-prefix}mark-color);
+  vertical-align: baseline;
+}
+
+// Abbreviations
+// 1. Remove underline decoration in Chrome, Edge, IE, Opera, and Safari
+abbr[title] {
+  border-bottom: 1px dotted;
+  text-decoration: none; // 1
+  cursor: help;
+}
+
+// Ins
+ins {
+  color: var(#{$css-var-prefix}ins-color);
+  text-decoration: none;
+}
+
+// del
+del {
+  color: var(#{$css-var-prefix}del-color);
+}
+
+// Prevent `sub` and `sup` elements from affecting the line height in all browsers
+sub,
+sup {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+
+// selection
+::selection {
+  background-color: var(#{$css-var-prefix}primary-focus);
+}

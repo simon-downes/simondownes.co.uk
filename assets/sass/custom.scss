@@ -1,0 +1,182 @@
+
+// -----------------------------------------------------------------------------
+// Layout
+// -----------------------------------------------------------------------------
+
+body {
+
+  > header {
+
+    padding-bottom:0;
+  }
+
+  > main {
+
+    padding-top: 1rem;
+
+    article {
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+
+    }
+
+  }
+
+  > footer {
+
+    padding-top: 0;
+
+    .container {
+
+      border-top: 1px solid #ddd;
+
+      padding-top: var(#{$css-var-prefix}block-spacing-vertical);
+      text-align: center;
+
+      .license {
+        display: inline-block;
+        margin-top: 0.5rem;
+      }
+
+      .fa-heart {
+        color: #bb0000;
+      }
+    }
+  }
+
+}
+
+// -----------------------------------------------------------------------------
+// Nav
+// -----------------------------------------------------------------------------
+header nav {
+
+  .avatar {
+    height: 48px;
+    width: 48px;
+    min-height: 48px;
+    min-width: 48px;
+    border-radius: 100px;
+  }
+
+  li {
+    padding: calc(var(#{$css-var-prefix}nav-element-spacing-vertical) * 0.75) var(#{$css-var-prefix}nav-element-spacing-horizontal);
+  }
+
+  ul.social {
+    font-size: 1.5em;
+  }
+
+  a:hover {
+    background-color: var(#{$css-var-prefix}primary-focus);
+  }
+
+}
+
+// -----------------------------------------------------------------------------
+// Misc
+// -----------------------------------------------------------------------------
+
+section.thought {
+
+  header {
+
+    --nv-block-spacing-vertical: 1rem;
+    margin-top: -2rem;
+
+    position: relative;
+
+    .date {
+      font-style: italic;
+    }
+
+    a.permalink {
+      position: absolute;
+      right: var(--nv-block-spacing-horizontal);
+      top: calc(var(--nv-block-spacing-vertical) / 1.5);
+    }
+  }
+
+  footer {
+
+    --nv-block-spacing-vertical: 1rem;
+
+    margin-bottom: -2rem;
+
+    p {
+      --nv-spacing-vertical: 0;
+
+
+    }
+
+  }
+
+}
+
+// spacing after code blocks
+div.highlight {
+  margin-bottom: var(#{$css-var-prefix}spacing-vertical);
+}
+
+.hero {
+
+  background: #D9E9EB;
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+
+  span {
+    white-space: nowrap;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    color: var(#{$css-var-prefix}muted-color);
+    font-style: italic;
+    font-weight: normal;
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+
+}
+
+#doggy {
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+  max-width: 100%;
+}
+
+input[type="checkbox"][disabled][checked] {
+  #{$css-var-prefix}background-color: var(#{$css-var-prefix}primary);
+}
+
+.adventure {
+
+  background: black;
+  border-radius: 10px;
+  padding: 1em;
+
+  margin-bottom: 2em;
+
+  p {
+    color: #00A300;
+    font-family: monospace;
+    max-width: none;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    span {
+      color: #c4a000;
+    }
+
+  }
+
+}

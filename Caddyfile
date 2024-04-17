@@ -1,0 +1,9 @@
+:80 {
+	root * /var/www
+
+	templates
+
+	file_server {
+		hide */.*
+	}
+}

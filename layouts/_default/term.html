@@ -1,0 +1,56 @@
+{{ define "main" }}
+<main role="main" class="container">
+  <article>
+
+    <h1>Tagged <span class="tag">{{ .Data.Term }}</span></h1>
+
+    <div class="content">
+
+      <h2>Articles</h2>
+      <ul>
+        {{ range where .Pages "Type" "eq" "articles" }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+        {{ else }}
+        <li>
+          <em class="muted">None found</em>
+        </li>
+        {{ end }}
+      </ul>
+
+      <h2>Notes</h2>
+      <ul>
+        {{ range sort (where .Pages "Type" "eq" "notes") ".File.TranslationBaseName" }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ partial "tags-list.html" .Params.tags }}
+        </li>
+        {{ else }}
+        <li>
+          <em class="muted">None found</em>
+        </li>
+        {{ end }}
+      </ul>
+
+      <h2>Thoughts</h2>
+      <ul>
+        {{ range sort (where .Pages "Type" "eq" "thoughts") ".Date" "desc"  }}
+        <li>
+          <a href="{{ .RelPermalink }}"><small class="mted"><em>{{ .Date.Format "2" }}<sup>{{ substr (.Date.Format "2" | humanize) -2 }}</sup> {{ .Date.Format "January 2006 @ 3:04 pm" }}</em></small></a>
+            - {{ or (trim .Summary " ") ((substr .File.TranslationBaseName 11) | humanize) }}
+        </li>
+        {{ else }}
+        <li>
+          <em class="muted">None found</em>
+        </li>
+        {{ end }}
+      </ul>
+
+    </div>
+
+    {{/* partial "page-meta-lastmod.html" . */}}
+
+  </article>
+</main>
+{{ end }}

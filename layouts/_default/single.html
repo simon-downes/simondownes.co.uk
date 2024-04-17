@@ -1,27 +1,17 @@
-
 {{ define "main" }}
-<article class="post">
+<main role="main" class="container">
+  <article>
 
-  <h1 class="title">{{ .Title }}</h1>
+    <h1>{{ .Section | singularize | title }} {{ .Title }}</h1>
 
-  <div class="meta">
-    {{ $dateTime := .PublishDate.Format "2006-01-02" }}
-    {{ $dateFormat := .Site.Params.dateFormat | default "2 Jan 2006" }}
-    <time class="is-meta" datetime="{{ $dateTime }}">{{ .PublishDate.Format $dateFormat }}</time>
-    {{ with .Params.tags }}
-      <span class="icon" title="tags">
-        <i class="fas fa-tags"></i>
-      </span>
-      {{ range . }}
-        {{ $href := print (absURL "tags/") (urlize .) }}
-        <a class="tag is-link is-light" href="{{ $href }}">{{ . }}</a>
-      {{ end }}
-    {{ end }}
-  </div>
+    {{ partial "tags.html" .Params.tags }}
 
-  <div class="content">
-    {{ .Content }}
-  </div>
+    <div class="content">
+      {{ .Content }}
+    </div>
 
-</article>
+    {{/* partial "page-meta-lastmod.html" . */}}
+
+  </article>
+</main>
 {{ end }}

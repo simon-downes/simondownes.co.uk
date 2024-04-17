@@ -1,0 +1,25 @@
+
+// Prefix for CSS variables
+// $css-var-prefix: "--nv-" !default; // Must start with "--"
+$css-var-prefix: "--nv-" !default; // Must start with "--"
+
+// https://github.com/system-fonts/modern-font-stacks?tab=readme-ov-file#emoji-support
+$emoji-fonts: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+@import "colours";
+
+@import "theme";
+
+@import "layout";
+
+@import "typography";
+
+@import "code";
+
+@import "helpers";
+
+@import "components/nav";
+@import "components/card";
+@import "components/tags";
+
+

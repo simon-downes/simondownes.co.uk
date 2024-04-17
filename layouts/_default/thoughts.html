@@ -1,0 +1,34 @@
+{{ define "main" }}
+<main role="main" class="container">
+  <article>
+
+    <h1>{{ .Title }}</h1>
+
+    <div class="content">
+
+      {{ .Content }}
+
+      {{ range sort .Pages }}
+      <section class="thought card">
+        <header>
+          <span class="date muted"><small>{{ .Date.Format "2" }}<sup>{{ substr (.Date.Format "2" | humanize) -2 }}</sup> {{ .Date.Format "January 2006 @ 3:04 PM" }}</small></span>
+          <a class="permalink" href="{{ .RelPermalink }}"><small><i class="fas fa-link"></i></small></a>
+        </header>
+
+        {{ .Content }}
+        <footer>
+          {{ partial "tags.html" .Params.tags }}
+        </footer>
+      </section>
+      {{ else }}
+      <p class="muted">Nothing here yet</p>
+      {{ end }}
+      </ul>
+
+    </div>
+
+    {{/* partial "page-meta-lastmod.html" . */}}
+
+  </article>
+</main>
+{{ end }}

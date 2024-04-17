@@ -1,0 +1,20 @@
+
+.tag {
+  font-size: 0.8em;
+  display: inline-block;
+  color: var(#{$css-var-prefix}muted-color);
+  background: var(#{$css-var-prefix}primary-focus);
+  padding: 0.25em 0.5em;
+  border-radius: var(#{$css-var-prefix}border-radius);
+  margin-left: calc(var(#{$css-var-prefix}spacing-horizontal) * 0.5);
+  white-space: nowrap;
+}
+
+a.tag {
+  color: var(#{$css-var-prefix}primary);
+  &:hover, &:active, &:focus {
+    background: var(#{$css-var-prefix}primary);
+    color: var(#{$css-var-prefix}primary-inverse);
+    text-decoration: none;
+  }
+}

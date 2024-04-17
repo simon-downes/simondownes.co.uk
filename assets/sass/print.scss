@@ -1,0 +1,16 @@
+@media print {
+
+  body {
+
+      > header {
+
+        .social,
+        nav:last-child {
+          display: none;
+        }
+
+      }
+
+  }
+
+}

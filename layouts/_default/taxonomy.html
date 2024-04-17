@@ -1,0 +1,33 @@
+{{ define "main" }}
+<main role="main" class="container">
+  <article>
+
+    <h1>{{ .Title }}</h1>
+
+    <div class="content">
+
+      {{- $articles := where site.Pages "Section" "eq" "articles" -}}
+      {{- $notes := where site.Pages "Section" "eq" "notes" -}}
+      {{- $thoughts := where site.Pages "Section" "eq" "thoughts" -}}
+
+      {{ .Content }}
+
+      <ul>
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags -}}
+        <li>
+          <a href="/tags/{{ $name | urlize }}">{{ $name  }}</a>
+          <span class="tag">articles: {{ where $articles "Params.tags" "intersect" (slice $name ) | len }}</span>
+          <span class="tag">notes: {{ where $notes "Params.tags" "intersect" (slice $name) | len }}</span>
+          <span class="tag">thoughts: {{ where $thoughts "Params.tags" "intersect" (slice $name) | len }}</span>
+        </li>
+        {{- end }}
+      </ul>
+
+    </div>
+
+    {{/* partial "page-meta-lastmod.html" . */}}
+
+  </article>
+</main>
+{{ end }}
+

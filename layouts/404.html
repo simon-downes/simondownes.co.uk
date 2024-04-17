@@ -1,0 +1,27 @@
+{{ define "main" }}
+<main role="main" class="container">
+
+  <article>
+
+    <h1>Page Not Found 😢</h1>
+
+    <div class="content">
+      <p>
+        Sorry whatever you asked for doesn't exist - maybe it never did, who's to know.
+        Here's a doggy pic to cheer you up.. 😁
+      </p>
+      <img id="doggy" src="">
+    </div>
+
+  </article>
+
+  <script>
+    fetch('https://random.dog/woof.json?filter=mp4,webm')
+      .then((response) => response.json())
+      .then((data) => {
+          document.getElementById('doggy').src = data.url
+      });
+  </script>
+
+</main>
+{{ end }}

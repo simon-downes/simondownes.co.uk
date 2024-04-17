@@ -1,0 +1,8 @@
+
+.hidden, [hidden] {
+    display: none;
+}
+
+.muted {
+    color: var(#{$css-var-prefix}muted-color);
+}

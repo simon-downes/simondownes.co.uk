@@ -1,0 +1,140 @@
+
+@import "theme-light.scss";
+
+// @import "theme-dark";
+
+:root {
+
+  #{$css-var-prefix}container-width: 916px;
+
+  #{$css-var-prefix}font-primary: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans", sans-serif, #{$emoji-fonts};
+  #{$css-var-prefix}font-secondary: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans", sans-serif, #{$emoji-fonts};
+  #{$css-var-prefix}font-code: "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace", "Noto Mono", "Oxygen Mono", "Liberation Mono", monospace, #{$emoji-fonts};
+
+  #{$css-var-prefix}font-size: 18px;
+  #{$css-var-prefix}font-weight: 400;
+
+  #{$css-var-prefix}line-height: 1.5;
+
+  #{$css-var-prefix}spacing: 1rem;
+
+  // Spacings for typography elements
+  #{$css-var-prefix}spacing-horizontal: var(#{$css-var-prefix}spacing);
+  #{$css-var-prefix}spacing-vertical: calc(var(#{$css-var-prefix}spacing) * 1.5);
+
+  // Spacings for body > header, body > main, body > footer, section, article
+  #{$css-var-prefix}block-spacing-vertical: calc(var(#{$css-var-prefix}spacing) * 2);
+  #{$css-var-prefix}block-spacing-horizontal: var(#{$css-var-prefix}spacing);
+
+  #{$css-var-prefix}grid-spacing-vertical: 0;
+  #{$css-var-prefix}grid-spacing-horizontal: var(#{$css-var-prefix}spacing);
+
+  // Spacings for form elements and button
+  #{$css-var-prefix}form-element-spacing-vertical: 0.75rem;
+  #{$css-var-prefix}form-element-spacing-horizontal: 1rem;
+
+  // Spacings for nav component
+  #{$css-var-prefix}nav-element-spacing-vertical: 1rem;
+  #{$css-var-prefix}nav-element-spacing-horizontal: 0.5rem;
+  #{$css-var-prefix}nav-link-spacing-vertical: 0.5rem;
+  #{$css-var-prefix}nav-link-spacing-horizontal: 0.5rem;
+
+  // Borders
+  #{$css-var-prefix}border-radius: 0.25rem;
+  #{$css-var-prefix}border-width: 1px;
+  #{$css-var-prefix}outline-width: 3px;
+
+  // Font weight for form labels & fieldsets legend
+  #{$css-var-prefix}form-label-font-weight: var(#{$css-var-prefix}font-weight);
+
+  // Transitions
+  #{$css-var-prefix}transition: 0.2s ease-in-out;
+
+}
+
+// Link
+a {
+  #{$css-var-prefix}text-decoration: none;
+
+  // Secondary & Contrast
+  &.secondary {
+    #{$css-var-prefix}text-decoration: underline;
+  }
+}
+
+// Small
+small {
+  #{$css-var-prefix}font-size: 0.875em;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  #{$css-var-prefix}font-weight: 700;
+}
+
+h1 {
+  #{$css-var-prefix}font-size: 2rem;
+  #{$css-var-prefix}spacing-vertical: 1rem;
+}
+
+h2 {
+  #{$css-var-prefix}font-size: 1.75rem;
+  #{$css-var-prefix}spacing-vertical: 0.75rem;
+}
+
+h3 {
+  #{$css-var-prefix}font-size: 1.5rem;
+  #{$css-var-prefix}spacing-vertical: 0.75rem;
+}
+
+h4 {
+  #{$css-var-prefix}font-size: 1.25rem;
+  #{$css-var-prefix}spacing-vertical: 0.5rem;
+}
+
+h5 {
+  #{$css-var-prefix}font-size: 1.125rem;
+  #{$css-var-prefix}spacing-vertical: 0.5rem;
+}
+
+// Forms elements
+[type="checkbox"],
+[type="radio"] {
+  #{$css-var-prefix}border-width: 2px;
+}
+
+[type="checkbox"][role="switch"] {
+  #{$css-var-prefix}border-width: 3px;
+}
+
+progress,
+[type="checkbox"],
+[type="radio"],
+[type="range"] {
+  accent-color: var(#{$css-var-prefix}primary);
+}
+
+// Table
+thead,
+tfoot {
+  th,
+  td {
+    #{$css-var-prefix}border-width: 3px;
+  }
+}
+
+:not(thead, tfoot) > * > td {
+  #{$css-var-prefix}font-size: 0.875em;
+}
+
+// Code
+pre,
+code,
+kbd,
+samp {
+  #{$css-var-prefix}font-family: var(#{$css-var-prefix}font-code);
+}
+
+kbd {
+  #{$css-var-prefix}font-weight: bolder;
+}
